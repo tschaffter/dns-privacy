@@ -16,7 +16,7 @@
 
 ## Caching DNS
 
-## License queries
+## License
 
 [Apache License 2.0]
 
