@@ -6,6 +6,8 @@
 
 ## Overview
 
+![infra]
+
 ## Introduction
 
 ## DNS over TLS
@@ -19,6 +21,10 @@
 ## License
 
 [Apache License 2.0]
+
+<!-- Images -->
+
+[infra]: ./doc/images/dnsmasq-stubby-infra.svg
 
 <!-- Links -->
 
