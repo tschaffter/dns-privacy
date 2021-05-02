@@ -1,8 +1,10 @@
-# DNS-over-TLS with Dnsmasq and Stubby
+# DNS Privacy
 
 [![GitHub Release](https://img.shields.io/github/release/tschaffter/dnsmasq-stubby.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/tschaffter/dnsmasq-stubby/releases)
 [![GitHub CI](https://img.shields.io/github/workflow/status/tschaffter/dnsmasq-stubby/CI.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/tschaffter/dnsmasq-stubby/actions)
 [![GitHub License](https://img.shields.io/github/license/tschaffter/dnsmasq-stubby.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/tschaffter/dnsmasq-stubby/blob/develop/LICENSE)
+
+DNS-over-TLS with Dnsmasq and Stubby
 
 ## Overview
 
