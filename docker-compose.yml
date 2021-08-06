@@ -2,22 +2,22 @@ version: "3.8"
 
 services:
   stubby-default:
-    image: tschaffter/getdns-stubby:1.6.0
-    container_name: stubby-default
+    image: tschaffter/getdns-stubby:1.7.0
+    container_name: dns-stubby-default
     restart: always
     networks:
-      - dns-default
+      - dns
+      - dns-internal
     volumes:
       - ./stubby/stubby-default.yml:/usr/local/etc/stubby/stubby.yml:ro
 
   dnsmasq-default:
-    image: tschaffter/dnsmasq:2.84
-    container_name: dnsmasq-default
+    image: tschaffter/dnsmasq:2.85
+    container_name: dns-dnsmasq-default
     restart: always
     command: ["dnsmasq", "-k", "--server", "stubby-default"]
     networks:
-      - dns-default
-      - dns
+      - dns-internal
     volumes:
       - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf:ro
       - ./dnsmasq/dnsmasq.d/example.com.conf:/etc/dnsmasq.d/example.com.conf:ro
@@ -48,25 +48,26 @@ services:
   #     - stubby-vlan10
 
   nginx:
-    image: nginx:1.19.9-alpine
+    image: nginx:1.21.1-alpine
     container_name: dns-nginx
     restart: always
     environment:
       - DNSMASQ_DEFAULT_HOST=dnsmasq-default
       # - DNSMASQ_VLAN10_HOST=dnsmasq-vlan10
-    networks:
-      - dns
-    ports:
-      - "53:53/udp"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/templates/events.conf:/etc/nginx/templates/events.conf.template:ro
       - ./nginx/templates/stream.conf:/etc/nginx/templates/stream.conf.template:ro
+    networks:
+      - dns
+      - dns-internal
+    ports:
+      - "53:53/udp"
     depends_on:
       - dnsmasq-default
       # - dnsmasq-vlan10
 
 networks:
   dns:
-  dns-default:
-  # dns-vlan10:
+  dns-internal:
+    # internal: true
